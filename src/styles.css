@@ -44,8 +44,8 @@
 }
 
 .brand-mark {
-  width: 25px;
-  height: 25px;
+  width: 32px;
+  height: 32px;
 }
 
 .site-nav {
@@ -385,9 +385,9 @@
   width: 22px;
 }
 
-.footer-mark svg {
-  width: 22px;
-  height: 22px;
+.footer-mark img {
+  width: 30px;
+  height: 30px;
 }
 
 /* Technical report */
@@ -964,8 +964,8 @@
   }
 
   .brand-mark {
-    width: 21px;
-    height: 21px;
+    width: 28px;
+    height: 28px;
   }
 
   .site-nav {
