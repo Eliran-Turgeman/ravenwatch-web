@@ -4,23 +4,23 @@
   "generated_at": "2026-07-13",
   "run_count": 3,
   "threat_coverage_runs": [
-    0.8431372549019608,
-    0.7450980392156863,
-    0.7843137254901961
+    0.8627450980392157,
+    0.8235294117647058,
+    0.8235294117647058
   ],
   "case_count": 12,
   "analyzed_files": 48,
   "analyzed_loc": 1315,
   "aggregate": {
     "flows": {
-      "precision": 0.8597560975609756,
+      "precision": 0.8650306748466258,
       "recall": 1,
-      "f1": 0.9245901639344262,
+      "f1": 0.9276315789473685,
       "true_positives": 141,
-      "false_positives": 23,
+      "false_positives": 22,
       "false_negatives": 0,
       "expected_count": 141,
-      "actual_count": 164
+      "actual_count": 163
     },
     "privacy_fields": {
       "precision": 1,
@@ -38,53 +38,53 @@
       "total": 303
     },
     "threats": {
-      "coverage": 0.7908496732026143,
-      "precision": 0.4245614035087719,
-      "f1": 0.5525114155251142,
-      "matched": 121,
+      "coverage": 0.8366013071895425,
+      "precision": 0.3742690058479532,
+      "f1": 0.5171717171717171,
+      "matched": 128,
       "expected_count": 153,
       "by_category": {
         "DenialOfService": {
-          "recall": 0.8333333333333334,
-          "true_positives": 10,
+          "recall": 1,
+          "true_positives": 12,
           "expected_count": 12
         },
         "ElevationOfPrivilege": {
-          "recall": 0.4444444444444444,
-          "true_positives": 4,
+          "recall": 1,
+          "true_positives": 9,
           "expected_count": 9
         },
         "InformationDisclosure": {
-          "recall": 0.8461538461538461,
-          "true_positives": 33,
+          "recall": 0.717948717948718,
+          "true_positives": 28,
           "expected_count": 39
         },
         "Repudiation": {
-          "recall": 0.6666666666666666,
-          "true_positives": 22,
+          "recall": 0.7878787878787878,
+          "true_positives": 26,
           "expected_count": 33
         },
         "Spoofing": {
-          "recall": 0.6666666666666666,
-          "true_positives": 16,
+          "recall": 0.8333333333333334,
+          "true_positives": 20,
           "expected_count": 24
         },
         "Tampering": {
-          "recall": 1,
-          "true_positives": 36,
+          "recall": 0.9166666666666666,
+          "true_positives": 33,
           "expected_count": 36
         }
       }
     },
     "efficiency": {
-      "combined_f1": 0.9598419998476231,
+      "combined_f1": 0.9613627401569482,
       "combined_f1_stdev": 0.0026339994808690275,
-      "cost_usd": 2.2530475,
-      "cost_usd_stdev": 0.12552260237204313
+      "cost_usd": 2.2958275,
+      "cost_usd_stdev": 0.1236673525025906
     },
-    "cost_usd": 2.2530475,
-    "total_tokens": 1011827.3333333334,
-    "latency_ms": 299994.4169826667,
-    "wall_clock_ms": 112282.83758933331
+    "cost_usd": 2.2958275,
+    "total_tokens": 1167938.3333333333,
+    "latency_ms": 467970.639961333,
+    "wall_clock_ms": 178706.85714100001
   }
 }

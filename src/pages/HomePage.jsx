@@ -110,10 +110,11 @@ export function HomePage() {
               {formatDate(snapshot.generated_at)}
             </p>
             <p>
-              The latest run found {formatPercent(benchmark.flows.recall)} of expected data flows
-              and scored {formatPercent(benchmark.privacy_fields.f1)} F1 on privacy fields. STRIDE
-              coverage reached {formatPercent(benchmark.threats.coverage)}, below the 85% capability
-              bar set in advance.
+              Across the latest evaluation, Ravenwatch found{" "}
+              {formatPercent(benchmark.flows.recall)} of expected data flows and scored{" "}
+              {formatPercent(benchmark.privacy_fields.f1)} F1 on privacy fields. Threat coverage
+              reached {formatPercent(benchmark.threats.coverage)}, below the 85% capability bar set
+              in advance.
             </p>
             <a className="text-link" href={siteHref("/benchmarks/")}>
               Read methods and limitations <span aria-hidden="true">&rarr;</span>

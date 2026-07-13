@@ -125,6 +125,12 @@ export function ReportPage() {
     .filter(([, metric]) => metric.recall < 0.7)
     .map(([category]) => categoryLabels[category] ?? category)
     .join(", ");
+  const categoryGateSummary = belowCategoryGate
+    ? `${belowCategoryGate} remain below 70%.`
+    : "Every threat category cleared 70% coverage.";
+  const repeatGateSummary = belowGateRuns
+    ? `${belowGateRuns} of ${snapshot.run_count} runs fell below 80%.`
+    : `All ${snapshot.run_count} runs cleared 80% coverage.`;
 
   return (
     <div className="site-shell">
@@ -337,9 +343,8 @@ export function ReportPage() {
             <article>
               <h3>The current threat-recall gate was missed.</h3>
               <p>
-                Coverage is {formatPercent(benchmark.threats.coverage)} versus the 85% target.
-                {belowCategoryGate} remain below 70%, and {belowGateRuns} of {snapshot.run_count}{" "}
-                runs fell below 80%.
+                Coverage is {formatPercent(benchmark.threats.coverage)} versus the 85% target.{" "}
+                {categoryGateSummary} {repeatGateSummary}
               </p>
             </article>
             <article>
