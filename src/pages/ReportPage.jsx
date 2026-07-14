@@ -168,7 +168,7 @@ export function ReportPage() {
         <section className="headline-score" aria-labelledby="headline-title">
           <div>
             <p className="section-index">01 / Result</p>
-            <h2 id="headline-title">Data-flow recall is complete. Threat coverage needs work.</h2>
+            <h2 id="headline-title">Data-flow recall is complete. Threat coverage is near target.</h2>
           </div>
           <div className="headline-number">
             <strong>{formatPercent(benchmark.flows.recall)}</strong>
@@ -177,7 +177,7 @@ export function ReportPage() {
           <p>
             Across three runs, Ravenwatch found all labeled data flows with{" "}
             {formatPercent(benchmark.flows.precision)} precision. Threat coverage reached{" "}
-            {formatPercent(benchmark.threats.coverage)}, below the 85% capability target.
+            {formatPercent(benchmark.threats.coverage, 2)}, just below the 85% capability target.
           </p>
         </section>
 
@@ -256,7 +256,7 @@ export function ReportPage() {
         <section className="secondary-metrics" aria-labelledby="summary-title">
           <div>
             <p className="section-index">04 / Evaluation</p>
-            <h2 id="summary-title">Stable extraction. Uneven threat recall.</h2>
+            <h2 id="summary-title">Strong extraction. Threat recall near target.</h2>
           </div>
           <dl>
             <div>
@@ -343,8 +343,8 @@ export function ReportPage() {
             <article>
               <h3>The current threat-recall gate was missed.</h3>
               <p>
-                Coverage is {formatPercent(benchmark.threats.coverage)} versus the 85% target.{" "}
-                {categoryGateSummary} {repeatGateSummary}
+                Coverage is {formatPercent(benchmark.threats.coverage, 2)} versus the 85.00%
+                target. {categoryGateSummary} {repeatGateSummary}
               </p>
             </article>
             <article>
