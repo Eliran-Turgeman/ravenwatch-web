@@ -1,5 +1,6 @@
 import snapshot from "../data/latest-benchmark.json";
 import { AccessForm } from "../components/AccessForm.jsx";
+import { ProductFlow } from "../components/ProductFlow.jsx";
 import { SiteFooter } from "../components/SiteFooter.jsx";
 import { SiteHeader } from "../components/SiteHeader.jsx";
 import { formatDate, formatPercent } from "../lib/format.js";
@@ -60,39 +61,14 @@ export function HomePage() {
         <section className="system" id="system" aria-labelledby="system-title">
           <div className="section-heading">
             <p className="section-index">02 / System</p>
-            <h2 id="system-title">Built as a system, not a prompt</h2>
+            <h2 id="system-title">How Ravenwatch works</h2>
+            <p className="section-lede">
+              Ravenwatch moves from your code and infrastructure to a system view, a privacy and
+              security review, and remediation you can act on &mdash; without losing the thread back
+              to the source.
+            </p>
           </div>
-          <div className="method-grid">
-            <article>
-              <span>01</span>
-              <h3>Structured analysis</h3>
-              <p>
-                Builds a coherent view of the system before evaluating privacy and security risk.
-              </p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Specialized review stages</h3>
-              <p>
-                Separates system mapping, privacy analysis, threat review, and reporting into a
-                repeatable workflow.
-              </p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Evidence integrity</h3>
-              <p>
-                Keeps findings tied to file and line references so teams can inspect the evidence.
-              </p>
-            </article>
-            <article>
-              <span>04</span>
-              <h3>Production-minded engineering</h3>
-              <p>
-                Treats reliability, observability, cost, and repeatability as system requirements.
-              </p>
-            </article>
-          </div>
+          <ProductFlow />
         </section>
 
         <section className="proof" aria-labelledby="proof-title">
