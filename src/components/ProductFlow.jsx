@@ -1,46 +1,73 @@
+import { useLayoutEffect, useRef } from "react";
 import { ArcherContainer, ArcherElement } from "react-archer";
 
+function FlowPort({ id, kind, side, targetId }) {
+  const relations = targetId
+    ? [
+        {
+          className: "flow-route",
+          domAttributes: { "aria-hidden": true },
+          sourceAnchor: "bottom",
+          targetAnchor: "top",
+          targetId,
+        },
+      ]
+    : undefined;
+
+  return (
+    <ArcherElement id={id} relations={relations}>
+      <span
+        className={`flow-port flow-port-${kind} flow-port-${side}`}
+        aria-hidden="true"
+        style={kind === "in" ? { top: -23 } : { bottom: -1 }}
+      />
+    </ArcherElement>
+  );
+}
+
 export function ProductFlow() {
-  const relationTo = (targetId) => [
-    {
-      className: "flow-route",
-      domAttributes: { "aria-hidden": true },
-      sourceAnchor: "bottom",
-      targetAnchor: "top",
-      targetId,
-    },
-  ];
+  const archerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const frame = requestAnimationFrame(() => archerRef.current?.refreshScreen());
+    return () => cancelAnimationFrame(frame);
+  });
 
   return (
     <ArcherContainer
+      ref={archerRef}
       className="product-flow"
-      endShape={{ arrow: { arrowLength: 8, arrowThickness: 5 } }}
+      endShape={{ arrow: { arrowLength: 7, arrowThickness: 4.5 } }}
       lineStyle="curve"
-      offset={1}
       strokeColor="rgba(143, 29, 29, 0.76)"
       strokeDasharray="2,8"
-      strokeWidth={1.4}
+      strokeWidth={1.35}
       svgContainerStyle={{ pointerEvents: "none", zIndex: 2 }}
     >
       <ol className="flow-track">
-        <ArcherElement id="flow-stage-1" relations={relationTo("flow-stage-2")}>
-          <li className="flow-stage">
-            <div className="flow-marker">
-              <span className="flow-numeral" aria-hidden="true">
-                01
-              </span>
-              <p className="flow-label">Read the system</p>
-            </div>
-            <div className="flow-body">
-              <p className="flow-narrative">
-                Ravenwatch reads your application code and infrastructure configuration together,
-                treating both as the source of truth for how a system is really built.
-              </p>
-              <div className="flow-sources">
-                <figure className="flow-artifact flow-code">
-                  <figcaption>checkout/service.py</figcaption>
-                  <pre>
-                    <code>{`@app.post("/orders")
+        <li className="flow-stage">
+          <FlowPort
+            id="flow-out-1"
+            kind="out"
+            side="left"
+            targetId="flow-in-2"
+          />
+          <div className="flow-marker">
+            <span className="flow-numeral" aria-hidden="true">
+              01
+            </span>
+            <p className="flow-label">Read the system</p>
+          </div>
+          <div className="flow-body">
+            <p className="flow-narrative">
+              Ravenwatch reads your application code and infrastructure configuration together,
+              treating both as the source of truth for how a system is really built.
+            </p>
+            <div className="flow-sources">
+              <figure className="flow-artifact flow-code">
+                <figcaption>checkout/service.py</figcaption>
+                <pre>
+                  <code>{`@app.post("/orders")
 def place_order(req):
     user = load_user(req.user_id)
     charge = billing.charge(
@@ -50,12 +77,12 @@ def place_order(req):
         "email": user.email,
         "order_id": charge.id
     })`}</code>
-                  </pre>
-                </figure>
-                <figure className="flow-artifact flow-code">
-                  <figcaption>infra/data.tf</figcaption>
-                  <pre>
-                    <code>{`resource "aws_db_instance" "orders" {
+                </pre>
+              </figure>
+              <figure className="flow-artifact flow-code">
+                <figcaption>infra/data.tf</figcaption>
+                <pre>
+                  <code>{`resource "aws_db_instance" "orders" {
   engine              = "postgres"
   storage_encrypted   = true
   publicly_accessible = false
@@ -66,15 +93,20 @@ resource "aws_s3_bucket" "receipts" {
     DataClass = "customer-record"
   }
 }`}</code>
-                  </pre>
-                </figure>
-              </div>
+                </pre>
+              </figure>
             </div>
-          </li>
-        </ArcherElement>
+          </div>
+        </li>
 
-        <ArcherElement id="flow-stage-2" relations={relationTo("flow-stage-3")}>
-          <li className="flow-stage">
+        <li className="flow-stage">
+          <FlowPort id="flow-in-2" kind="in" side="right" />
+          <FlowPort
+            id="flow-out-2"
+            kind="out"
+            side="right"
+            targetId="flow-in-3"
+          />
           <div className="flow-marker">
             <span className="flow-numeral" aria-hidden="true">
               02
@@ -135,11 +167,16 @@ resource "aws_s3_bucket" "receipts" {
               </p>
             </figure>
           </div>
-          </li>
-        </ArcherElement>
+        </li>
 
-        <ArcherElement id="flow-stage-3" relations={relationTo("flow-stage-4")}>
-          <li className="flow-stage">
+        <li className="flow-stage">
+          <FlowPort id="flow-in-3" kind="in" side="left" />
+          <FlowPort
+            id="flow-out-3"
+            kind="out"
+            side="left"
+            targetId="flow-in-4"
+          />
           <div className="flow-marker">
             <span className="flow-numeral" aria-hidden="true">
               03
@@ -172,11 +209,10 @@ resource "aws_s3_bucket" "receipts" {
               </li>
             </ul>
           </div>
-          </li>
-        </ArcherElement>
+        </li>
 
-        <ArcherElement id="flow-stage-4">
-          <li className="flow-stage">
+        <li className="flow-stage">
+          <FlowPort id="flow-in-4" kind="in" side="right" />
           <div className="flow-marker">
             <span className="flow-numeral" aria-hidden="true">
               04
@@ -212,8 +248,7 @@ resource "aws_s3_bucket" "receipts" {
               </dl>
             </article>
           </div>
-          </li>
-        </ArcherElement>
+        </li>
       </ol>
     </ArcherContainer>
   );

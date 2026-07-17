@@ -842,6 +842,22 @@
   stroke-linecap: round;
 }
 
+.flow-port {
+  position: absolute;
+  z-index: 3;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.flow-port-left {
+  left: 22%;
+}
+
+.flow-port-right {
+  right: 22%;
+}
+
 .flow-body {
   position: relative;
   z-index: 1;
