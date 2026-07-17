@@ -1,45 +1,45 @@
-function StageConnector({ direction }) {
-  const path =
-    direction === "forward"
-      ? "M24 8 C 24 92, 456 48, 456 132"
-      : "M456 8 C 456 92, 24 48, 24 132";
-
-  return (
-    <svg
-      className={`flow-connector flow-connector-${direction}`}
-      viewBox="0 0 480 140"
-      fill="none"
-      aria-hidden="true"
-      focusable="false"
-      preserveAspectRatio="none"
-    >
-      <path className="flow-connector-track" d={path} />
-      <path className="flow-connector-live" d={path} />
-    </svg>
-  );
-}
+import { ArcherContainer, ArcherElement } from "react-archer";
 
 export function ProductFlow() {
+  const relationTo = (targetId) => [
+    {
+      className: "flow-route",
+      domAttributes: { "aria-hidden": true },
+      sourceAnchor: "bottom",
+      targetAnchor: "top",
+      targetId,
+    },
+  ];
+
   return (
-    <div className="product-flow">
+    <ArcherContainer
+      className="product-flow"
+      endShape={{ arrow: { arrowLength: 8, arrowThickness: 5 } }}
+      lineStyle="curve"
+      strokeColor="rgba(143, 29, 29, 0.76)"
+      strokeDasharray="2,8"
+      strokeWidth={1.4}
+      svgContainerStyle={{ pointerEvents: "none", zIndex: 2 }}
+    >
       <ol className="flow-track">
-        <li className="flow-stage">
-          <div className="flow-marker">
-            <span className="flow-numeral" aria-hidden="true">
-              01
-            </span>
-            <p className="flow-label">Read the system</p>
-          </div>
-          <div className="flow-body">
-            <p className="flow-narrative">
-              Ravenwatch reads your application code and infrastructure configuration together,
-              treating both as the source of truth for how a system is really built.
-            </p>
-            <div className="flow-sources">
-              <figure className="flow-artifact flow-code">
-                <figcaption>checkout/service.py</figcaption>
-                <pre>
-                  <code>{`@app.post("/orders")
+        <ArcherElement id="flow-stage-1" relations={relationTo("flow-stage-2")}>
+          <li className="flow-stage">
+            <div className="flow-marker">
+              <span className="flow-numeral" aria-hidden="true">
+                01
+              </span>
+              <p className="flow-label">Read the system</p>
+            </div>
+            <div className="flow-body">
+              <p className="flow-narrative">
+                Ravenwatch reads your application code and infrastructure configuration together,
+                treating both as the source of truth for how a system is really built.
+              </p>
+              <div className="flow-sources">
+                <figure className="flow-artifact flow-code">
+                  <figcaption>checkout/service.py</figcaption>
+                  <pre>
+                    <code>{`@app.post("/orders")
 def place_order(req):
     user = load_user(req.user_id)
     charge = billing.charge(
@@ -49,12 +49,12 @@ def place_order(req):
         "email": user.email,
         "order_id": charge.id
     })`}</code>
-                </pre>
-              </figure>
-              <figure className="flow-artifact flow-code">
-                <figcaption>infra/data.tf</figcaption>
-                <pre>
-                  <code>{`resource "aws_db_instance" "orders" {
+                  </pre>
+                </figure>
+                <figure className="flow-artifact flow-code">
+                  <figcaption>infra/data.tf</figcaption>
+                  <pre>
+                    <code>{`resource "aws_db_instance" "orders" {
   engine              = "postgres"
   storage_encrypted   = true
   publicly_accessible = false
@@ -65,14 +65,15 @@ resource "aws_s3_bucket" "receipts" {
     DataClass = "customer-record"
   }
 }`}</code>
-                </pre>
-              </figure>
+                  </pre>
+                </figure>
+              </div>
             </div>
-          </div>
-          <StageConnector direction="forward" />
-        </li>
+          </li>
+        </ArcherElement>
 
-        <li className="flow-stage">
+        <ArcherElement id="flow-stage-2" relations={relationTo("flow-stage-3")}>
+          <li className="flow-stage">
           <div className="flow-marker">
             <span className="flow-numeral" aria-hidden="true">
               02
@@ -133,10 +134,11 @@ resource "aws_s3_bucket" "receipts" {
               </p>
             </figure>
           </div>
-          <StageConnector direction="reverse" />
-        </li>
+          </li>
+        </ArcherElement>
 
-        <li className="flow-stage">
+        <ArcherElement id="flow-stage-3" relations={relationTo("flow-stage-4")}>
+          <li className="flow-stage">
           <div className="flow-marker">
             <span className="flow-numeral" aria-hidden="true">
               03
@@ -169,10 +171,11 @@ resource "aws_s3_bucket" "receipts" {
               </li>
             </ul>
           </div>
-          <StageConnector direction="forward" />
-        </li>
+          </li>
+        </ArcherElement>
 
-        <li className="flow-stage">
+        <ArcherElement id="flow-stage-4">
+          <li className="flow-stage">
           <div className="flow-marker">
             <span className="flow-numeral" aria-hidden="true">
               04
@@ -208,9 +211,10 @@ resource "aws_s3_bucket" "receipts" {
               </dl>
             </article>
           </div>
-        </li>
+          </li>
+        </ArcherElement>
       </ol>
-    </div>
+    </ArcherContainer>
   );
 }
 
