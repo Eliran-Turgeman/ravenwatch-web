@@ -16,6 +16,7 @@ export function ProductFlow() {
       className="product-flow"
       endShape={{ arrow: { arrowLength: 8, arrowThickness: 5 } }}
       lineStyle="curve"
+      offset={5}
       strokeColor="rgba(143, 29, 29, 0.76)"
       strokeDasharray="2,8"
       strokeWidth={1.4}
