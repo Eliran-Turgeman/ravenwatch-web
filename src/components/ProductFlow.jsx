@@ -16,11 +16,11 @@ export function ProductFlow() {
       className="product-flow"
       endShape={{ arrow: { arrowLength: 8, arrowThickness: 5 } }}
       lineStyle="curve"
-      offset={-5}
+      offset={1}
       strokeColor="rgba(143, 29, 29, 0.76)"
       strokeDasharray="2,8"
       strokeWidth={1.4}
-      svgContainerStyle={{ pointerEvents: "none", zIndex: 0 }}
+      svgContainerStyle={{ pointerEvents: "none", zIndex: 2 }}
     >
       <ol className="flow-track">
         <ArcherElement id="flow-stage-1" relations={relationTo("flow-stage-2")}>
