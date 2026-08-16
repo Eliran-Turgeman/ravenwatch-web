@@ -94,6 +94,16 @@ function Metadata() {
         <dd>{snapshot.run_count} independent runs</dd>
       </div>
       <div>
+        <dt>Profile</dt>
+        <dd>{snapshot.profile}</dd>
+      </div>
+      <div>
+        <dt>Provider / source</dt>
+        <dd>
+          {snapshot.provider} / {snapshot.source_commit.slice(0, 7)}
+        </dd>
+      </div>
+      <div>
         <dt>Mean cost / run</dt>
         <dd>
           {formatMeanStdev(
@@ -157,7 +167,7 @@ export function ReportPage() {
             <p>
               I built Ravenwatch as an AI engineering system, not a one-shot model demo. This
               report measures the complete product across repeated runs and publishes the result
-              even though the threat-recall target was missed.
+              while documenting why the full threat-capability gate remains open.
             </p>
             <p className="report-provenance">
               Built by <strong>Eliran Turgeman</strong>
@@ -168,7 +178,9 @@ export function ReportPage() {
         <section className="headline-score" aria-labelledby="headline-title">
           <div>
             <p className="section-index">01 / Result</p>
-            <h2 id="headline-title">Data-flow recall is complete. Threat coverage is near target.</h2>
+            <h2 id="headline-title">
+              Data-flow recall is complete. Pooled threat coverage clears its target.
+            </h2>
           </div>
           <div className="headline-number">
             <strong>{formatPercent(benchmark.flows.recall)}</strong>
@@ -177,7 +189,9 @@ export function ReportPage() {
           <p>
             Across three runs, Ravenwatch found all labeled data flows with{" "}
             {formatPercent(benchmark.flows.precision)} precision. Threat coverage reached{" "}
-            {formatPercent(benchmark.threats.coverage, 2)}, just below the 85% capability target.
+            {formatPercent(benchmark.threats.coverage, 2)}, above the pooled 85% target. The full
+            gate remains open because one category missed its floor and the locked holdout was not
+            run.
           </p>
         </section>
 
@@ -256,7 +270,7 @@ export function ReportPage() {
         <section className="secondary-metrics" aria-labelledby="summary-title">
           <div>
             <p className="section-index">04 / Evaluation</p>
-            <h2 id="summary-title">Strong extraction. Threat recall near target.</h2>
+            <h2 id="summary-title">Strong extraction. Pooled threat recall above target.</h2>
           </div>
           <dl>
             <div>
@@ -268,7 +282,7 @@ export function ReportPage() {
                   formatPercent,
                 )}
               </dd>
-              <dd className="metric-note">Mean ± sample deviation across complete runs</dd>
+              <dd className="metric-note">Mean ± standard deviation across complete runs</dd>
             </div>
             <div>
               <dt>Privacy classification</dt>
@@ -303,8 +317,8 @@ export function ReportPage() {
               <span>01</span>
               <h3>Fixed labeled suite</h3>
               <p>
-                Twelve synthetic software fixtures cover {snapshot.analyzed_files} files and{" "}
-                {formatInteger(snapshot.analyzed_loc)} lines of code.
+                {snapshot.case_count} synthetic software fixtures cover {snapshot.analyzed_files}{" "}
+                files and {formatInteger(snapshot.analyzed_loc)} lines of code.
               </p>
             </article>
             <article>
@@ -341,10 +355,12 @@ export function ReportPage() {
           </div>
           <div className="limitation-list">
             <article>
-              <h3>The current threat-recall gate was missed.</h3>
+              <h3>The full threat-capability gate remains open.</h3>
               <p>
-                Coverage is {formatPercent(benchmark.threats.coverage, 2)} versus the 85.00%
-                target. {categoryGateSummary} {repeatGateSummary}
+                Pooled coverage is {formatPercent(benchmark.threats.coverage, 2)}, above the 85.00%
+                target. {categoryGateSummary} {repeatGateSummary} The aggregate also contains{" "}
+                {benchmark.threats.unsupported_count} unsupported and{" "}
+                {benchmark.threats.duplicate_count} duplicate outputs.
               </p>
             </article>
             <article>
@@ -357,8 +373,8 @@ export function ReportPage() {
             <article>
               <h3>The suite is intentionally small.</h3>
               <p>
-                Twelve fixtures make measurement repeatable, but they do not represent every
-                architecture, dependency graph, or production environment.
+                {snapshot.case_count} fixtures make measurement repeatable, but they do not
+                represent every architecture, dependency graph, or production environment.
               </p>
             </article>
           </div>

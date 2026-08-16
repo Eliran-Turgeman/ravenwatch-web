@@ -28,9 +28,15 @@ export function formatDuration(milliseconds) {
     return `${totalSeconds}s`;
   }
 
-  const minutes = Math.floor(totalSeconds / 60);
+  const totalMinutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
-  return `${minutes}m ${seconds}s`;
+  if (totalMinutes < 60) {
+    return `${totalMinutes}m ${seconds}s`;
+  }
+
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  return `${hours}h ${minutes}m ${seconds}s`;
 }
 
 export function formatDate(value) {

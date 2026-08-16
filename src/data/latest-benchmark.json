@@ -1,90 +1,101 @@
 {
   "schema": "ravenwatch.public-evaluation",
   "version": 1,
-  "generated_at": "2026-07-14",
+  "generated_at": "2026-08-14",
+  "profile": "openrouter-frontier-v1",
+  "provider": "openrouter",
+  "source_commit": "7248a5faa8851e1021a5296b64fc04f95a1216e7",
+  "price_table_id": "openrouter-2026-08-04-v1",
+  "cache_policy": "cache-cold",
   "run_count": 3,
   "threat_coverage_runs": [
-    0.8235294117647058,
-    0.8823529411764706,
-    0.8431372549019608
+    0.864406779661017,
+    0.8305084745762712,
+    0.9152542372881356
   ],
-  "case_count": 12,
-  "analyzed_files": 48,
-  "analyzed_loc": 1315,
+  "case_count": 13,
+  "analyzed_files": 59,
+  "analyzed_loc": 1794,
   "aggregate": {
     "flows": {
-      "precision": 0.8867924528301887,
+      "precision": 0.859375,
       "recall": 1,
-      "f1": 0.9400000000000001,
-      "true_positives": 141,
-      "false_positives": 18,
+      "f1": 0.9243697478991597,
+      "true_positives": 165,
+      "false_positives": 27,
       "false_negatives": 0,
-      "expected_count": 141,
-      "actual_count": 159
+      "expected_count": 165,
+      "actual_count": 192
     },
     "privacy_fields": {
       "precision": 1,
-      "recall": 0.9901960784313726,
-      "f1": 0.9950738916256158,
-      "true_positives": 303,
+      "recall": 0.9923076923076923,
+      "f1": 0.9961389961389961,
+      "true_positives": 387,
       "false_positives": 0,
       "false_negatives": 3,
-      "expected_count": 306,
-      "actual_count": 303
+      "expected_count": 390,
+      "actual_count": 387
     },
     "privacy_classification": {
-      "accuracy": 0.7227722772277227,
-      "correct": 219,
-      "total": 303
+      "accuracy": 0.6434108527131783,
+      "correct": 249,
+      "total": 387
     },
     "threats": {
-      "coverage": 0.8496732026143791,
-      "precision": 0.35911602209944754,
-      "f1": 0.5048543689320388,
-      "matched": 130,
-      "expected_count": 153,
+      "coverage": 0.8700564971751412,
+      "precision": 0.4350282485875706,
+      "f1": 0.5800376647834274,
+      "matched": 154,
+      "actual_count": 354,
+      "expected_count": 177,
+      "unsupported_count": 1,
+      "unsupported_rate": 0.002824858757062147,
+      "duplicate_count": 2,
+      "duplicate_rate": 0.005649717514124294,
+      "mitigation_presence": 1,
       "by_category": {
         "DenialOfService": {
-          "recall": 0.9166666666666666,
-          "true_positives": 11,
-          "expected_count": 12
+          "recall": 1,
+          "true_positives": 15,
+          "expected_count": 15
         },
         "ElevationOfPrivilege": {
-          "recall": 0.7777777777777778,
-          "true_positives": 7,
-          "expected_count": 9
+          "recall": 0.6666666666666666,
+          "true_positives": 8,
+          "expected_count": 12
         },
         "InformationDisclosure": {
-          "recall": 0.8205128205128205,
-          "true_positives": 32,
-          "expected_count": 39
+          "recall": 0.7843137254901961,
+          "true_positives": 40,
+          "expected_count": 51
         },
         "Repudiation": {
-          "recall": 0.7878787878787878,
-          "true_positives": 26,
-          "expected_count": 33
+          "recall": 0.8333333333333334,
+          "true_positives": 30,
+          "expected_count": 36
         },
         "Spoofing": {
-          "recall": 0.875,
-          "true_positives": 21,
+          "recall": 0.9583333333333334,
+          "true_positives": 23,
           "expected_count": 24
         },
         "Tampering": {
-          "recall": 0.9166666666666666,
-          "true_positives": 33,
-          "expected_count": 36
+          "recall": 0.9743589743589743,
+          "true_positives": 38,
+          "expected_count": 39
         }
       }
     },
     "efficiency": {
-      "combined_f1": 0.967568282279788,
-      "combined_f1_stdev": 0.004700548387519308,
-      "cost_usd": 2.230236666666667,
-      "cost_usd_stdev": 0.110690230833996
+      "combined_f1": 0.9603191128614856,
+      "combined_f1_stdev": 0.0054476639536714215,
+      "cost_usd": 1.0907080349999998,
+      "cost_usd_stdev": 0.05410031050775693
     },
-    "cost_usd": 2.230236666666667,
-    "total_tokens": 1168389,
-    "latency_ms": 564881.5177066671,
-    "wall_clock_ms": 191094.57262233333
+    "cost_usd": 1.0907080349999998,
+    "total_tokens": 4944011,
+    "latency_ms": 26372286.721133318,
+    "wall_clock_ms": 13398295.207700072
   }
 }
